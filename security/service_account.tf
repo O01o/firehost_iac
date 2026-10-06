@@ -28,6 +28,12 @@ resource "google_project_iam_member" "sa_user" {
   member  = "serviceAccount:${google_service_account.github_actions_sa.email}"
 }
 
+resource "google_project_iam_member" "workload_identity_admin" {
+  project = var.project_id
+  role    = "roles/iam.workloadIdentityUser"
+  member  = "serviceAccount:${google_service_account.github_actions_sa.email}"
+}
+
 # ----------------------------------------------------------
 # Project Services
 # ----------------------------------------------------------
