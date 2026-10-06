@@ -27,3 +27,14 @@ resource "google_project_iam_member" "sa_user" {
   role    = "roles/iam.serviceAccountUser"
   member  = "serviceAccount:${google_service_account.github_actions_sa.email}"
 }
+
+# ----------------------------------------------------------
+# Project Services
+# ----------------------------------------------------------
+
+resource "google_project_service" "iamcredentials" {
+  project = var.project_id
+  service = "iamcredentials.googleapis.com"
+
+  disable_on_destroy = false
+}
