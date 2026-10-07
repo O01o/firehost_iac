@@ -4,9 +4,11 @@ resource "google_firebase_web_app" "firehost" {
   display_name = var.name
 }
 
-resource "google_firebase_hosting_site" "mastering_aroapl" {
+resource "google_firebase_hosting_site" "site" {
+  for_each = var.deployments
+
   provider = google-beta
-  project = var.project_id
-  site_id = "mastering-aroapl"
-  app_id = google_firebase_web_app.firehost.app_id
+  project  = var.project_id
+  site_id  = each.value.site_id
+  app_id   = google_firebase_web_app.firehost.app_id
 }

@@ -28,10 +28,12 @@ resource "google_project_iam_member" "sa_user" {
   member  = "serviceAccount:${google_service_account.github_actions_sa.email}"
 }
 
-resource "google_project_iam_member" "workload_identity_admin" {
+resource "google_project_iam_member" "github_wif" {
+  for_each = var.deployments
+
   project = var.project_id
   role    = "roles/iam.workloadIdentityUser"
-  member  = "serviceAccount:${google_service_account.github_actions_sa.email}"
+  member  = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.github.name}/attribute.repository/${var.github_owner}/${each.value.github_repository}"
 }
 
 # ----------------------------------------------------------

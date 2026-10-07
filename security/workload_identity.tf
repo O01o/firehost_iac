@@ -18,5 +18,5 @@ resource "google_iam_workload_identity_pool_provider" "github" {
     "attribute.ref" = "assertion.ref"
   }
 
-  attribute_condition = "assertion.repository == 'O01o/docs_mastering_aroapl'"
+  attribute_condition = "assertion.repository in [${join(", ", [for d in values(var.deployments) : "'${var.github_owner}/${d.github_repository}'"])}]"
 }
