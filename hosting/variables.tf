@@ -13,6 +13,6 @@ variable "name" {
 variable "deployments" {
   type = map(object({
     github_repository = string
-    site_id = string
+    site_id           = string
   }))
 }

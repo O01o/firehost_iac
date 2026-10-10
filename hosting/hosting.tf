@@ -1,6 +1,6 @@
 resource "google_firebase_web_app" "firehost" {
-  provider = google-beta
-  project  = var.project_id
+  provider     = google-beta
+  project      = var.project_id
   display_name = var.name
 }
 

@@ -25,16 +25,15 @@ provider "google-beta" {
 module "security" {
   source = "./security"
 
-  project_id = var.project_id
-  github_owner = var.github_owner
-  deployments  = var.deployments
+  project_id  = var.project_id
+  deployments = var.deployments
 }
 
 module "hosting" {
   source = "./hosting"
 
-  project_id = var.project_id
-  region     = var.region
-  name       = var.name
+  project_id  = var.project_id
+  region      = var.region
+  name        = var.name
   deployments = var.deployments
 }

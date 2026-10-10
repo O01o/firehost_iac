@@ -33,7 +33,7 @@ resource "google_project_iam_member" "github_wif" {
 
   project = var.project_id
   role    = "roles/iam.workloadIdentityUser"
-  member  = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.github.name}/attribute.repository/${var.github_owner}/${each.value.github_repository}"
+  member  = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.github.name}/attribute.repository/${each.value.github_owner}/${each.value.github_repository}"
 }
 
 # ----------------------------------------------------------
